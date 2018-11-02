@@ -29,7 +29,7 @@ public class DataBaseMeeting  extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(
                 "create table MEETINGS1 " +
-                        "(id integer primary key, meetingtitle text,meetingdetails text,date text, time text,location text)"
+                        "(id integer primary key, meetingtitle text,meetingdetails text,date text,ScheduledDate text, starttime text,endtime text,contactnum text,location text)"
 
         );
 
@@ -42,15 +42,19 @@ public class DataBaseMeeting  extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS MEETINGS1");
         onCreate(sqLiteDatabase);
     }
-    public boolean insertmeeting (String meetingtitle, String meetingdetails, String date, String time,String location) {
+    public boolean insertmeeting (String meetingtitle, String meetingdetails, String date,String schedate,String strttime,String entime,String phn,String location) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("meetingtitle", meetingtitle);
         contentValues.put("meetingdetails", meetingdetails);
         contentValues.put("date", date);
-        contentValues.put("time", time);
+        contentValues.put("ScheduledDate", schedate);
+        contentValues.put("starttime", strttime);
+        contentValues.put("starttime", strttime);
+        contentValues.put("endtime",entime );
+        contentValues.put("contactnum",phn );
         contentValues.put("location", location);
-        db.insert("meetings", null, contentValues);
+        db.insert("MEETINGS1", null, contentValues);
         return true;
     }
     public Cursor getData(int id) {
