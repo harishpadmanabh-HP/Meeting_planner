@@ -36,7 +36,8 @@ public class AddMeetingActivity extends AppCompatActivity {
     private String contactID,Contactnum,contactName1;
     String stragenda,strdate,strstarttime,strendtime,strphn;
 
-    DataBaseMeeting dbconnect;
+    //DataBaseMeeting dbconnect;
+    DBHelper dbconnect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         endtime=(EditText)findViewById(R.id.End_time_edt);
         phonenum=(EditText)findViewById(R.id.phone_number_edt);
 
-dbconnect=new DataBaseMeeting(this);
+dbconnect=new DBHelper(this);
         //Tool bar settings
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -277,7 +278,9 @@ dbconnect=new DataBaseMeeting(this);
         Toast.makeText(this,stragenda+strdate+strstarttime+strendtime+strphn+strlocation,Toast.LENGTH_SHORT).show();
        // Toast.makeText(this,"Data"+stragenda+strdate+strstarttime+strendtime+strphn,strlocation,Toast.LENGTH_SHORT).show();
 //        try {
-            if (dbconnect.insertmeeting( stragenda, strdate, strendtime, strendtime, strphn)) {
+           // if (dbconnect.insertmeeting( stragenda, strdate, strendtime, strendtime, strphn)) {
+        if (dbconnect.insertMeetings("aaa","ssss","dddd", stragenda, strdate, strendtime, strendtime, strphn)) {
+
               //  if (dbconnect.insertmeeting( "stragenda", "strdate", "strendtime", "strendtime", "strphn")) {
                 Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {
