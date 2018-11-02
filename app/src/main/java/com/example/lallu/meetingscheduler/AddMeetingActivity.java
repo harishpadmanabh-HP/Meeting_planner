@@ -278,7 +278,7 @@ dbconnect=new DataBaseMeeting(this);
        // Toast.makeText(this,"Data"+stragenda+strdate+strstarttime+strendtime+strphn,strlocation,Toast.LENGTH_SHORT).show();
 //        try {
             if (dbconnect.insertmeeting( stragenda, strdate, strendtime, strendtime, strphn)) {
-               // if (dbconnect.insertmeeting( "stragenda", "strdate", "strendtime", "strendtime", "strphn")) {
+              //  if (dbconnect.insertmeeting( "stragenda", "strdate", "strendtime", "strendtime", "strphn")) {
                 Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
