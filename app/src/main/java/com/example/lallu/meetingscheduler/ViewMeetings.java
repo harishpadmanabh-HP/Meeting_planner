@@ -26,8 +26,17 @@ public class ViewMeetings extends AppCompatActivity {
                 Cursor rs = dbselct.getData(Value);
                 id_To_Update = Value;
                 rs.moveToFirst();
-                String nam = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
-                Log.e("title",nam);
+                String meeting_tittle = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
+                String meeting_Date=rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
+                String meeting_Agennda=rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
+                String meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
+                String meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
+                String meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
+                String phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+                String location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+
+
+                Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
                 if (!rs.isClosed())  {
                     rs.close();
                 }
