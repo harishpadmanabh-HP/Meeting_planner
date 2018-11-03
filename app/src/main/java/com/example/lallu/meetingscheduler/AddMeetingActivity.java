@@ -21,6 +21,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
@@ -28,13 +29,13 @@ import static android.content.ContentValues.TAG;
 public class AddMeetingActivity extends AppCompatActivity {
     AppBarLayout appBarLayout;
     Toolbar toolbar;
-    EditText pickdate,starttime,endtime,phonenum,agenda;
+    EditText pickdate,starttime,endtime,phonenum,agenda,meetingtitle;
     String amPm,strlocation="aaaaaaaa";
     Calendar calender=Calendar.getInstance();
     private static final int REQUEST_CODE_PICK_CONTACTS=1;
     private Uri uriContact;
     private String contactID,Contactnum,contactName1;
-    String stragenda,strdate,strstarttime,strendtime,strphn;
+    String stragenda,strdate,strstarttime,strendtime,strtitle,strphn;
 
     //DataBaseMeeting dbconnect;
     DBHelper dbconnect;
@@ -50,6 +51,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         starttime=(EditText)findViewById(R.id.start_time_edt);
         endtime=(EditText)findViewById(R.id.End_time_edt);
         phonenum=(EditText)findViewById(R.id.phone_number_edt);
+        meetingtitle=(EditText)findViewById(R.id.title_edt);
 
 dbconnect=new DBHelper(this);
         //Tool bar settings
@@ -269,28 +271,34 @@ dbconnect=new DBHelper(this);
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void SaveData(View view) {
         stragenda=agenda.getText().toString();
         strdate=pickdate.getText().toString();
         strstarttime=starttime.getText().toString();
         strendtime=endtime.getText().toString();
         strphn=phonenum.getText().toString();
-        Toast.makeText(this,stragenda+strdate+strstarttime+strendtime+strphn+strlocation,Toast.LENGTH_SHORT).show();
-       // Toast.makeText(this,"Data"+stragenda+strdate+strstarttime+strendtime+strphn,strlocation,Toast.LENGTH_SHORT).show();
-//        try {
-           // if (dbconnect.insertmeeting( stragenda, strdate, strendtime, strendtime, strphn)) {
-        if (dbconnect.insertMeetings("aaa","ssss","dddd", stragenda, strdate, strendtime, strendtime, strphn)) {
+        strtitle=meetingtitle.getText().toString();
+        //Toast.makeText(this,stragenda+strdate+strstarttime+strendtime+strphn+strlocation,Toast.LENGTH_SHORT).show();
 
-              //  if (dbconnect.insertmeeting( "stragenda", "strdate", "strendtime", "strendtime", "strphn")) {
-                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+        //Current date
+
+        Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String current_Date = df.format(c);
+        Toast.makeText(getApplicationContext(),current_Date,Toast.LENGTH_SHORT).show();
+
+
+
+
+
+        if (dbconnect.insertMeetings(current_Date,strtitle,"dddd", stragenda, strdate, strendtime, strendtime, strphn)) {
+
+                   Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
-//        }
-//        catch (Exception e)
-//        {
-//
-//        }
+
 
 
 

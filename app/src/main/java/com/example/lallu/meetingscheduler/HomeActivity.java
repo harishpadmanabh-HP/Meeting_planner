@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ FloatingActionButton fa;
 ListView meetingListview;
     public final static String EXTRA_MESSAGE = "MESSAGE";
     DBHelper mydbhelper;
+    ArrayAdapter adapt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +25,7 @@ ListView meetingListview;
 
         mydbhelper=new DBHelper(this);
         ArrayList arrayList=mydbhelper.getAllCotacts();
-        ArrayAdapter adapt=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+         adapt=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
 
 
 
@@ -33,6 +35,23 @@ ListView meetingListview;
 
         meetingListview=(ListView)findViewById(R.id.mylist_meetings);
         meetingListview.setAdapter(adapt);
+
+      // Action of Listview
+        meetingListview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                // TODO Auto-generated method stub
+                int id_To_Search = arg2 + 1;
+
+                Bundle dataBundle = new Bundle();
+                dataBundle.putInt("id", id_To_Search);
+
+                Intent intent = new Intent(getApplicationContext(),AddMeetingActivity.class);
+
+                intent.putExtras(dataBundle);
+                startActivity(intent);
+            }
+        });
 
 
 
@@ -44,5 +63,16 @@ ListView meetingListview;
                 startActivity(new Intent(getApplicationContext(),AddMeetingActivity.class));
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+
+        ArrayList arrayList=mydbhelper.getAllCotacts();
+        adapt=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
+        meetingListview=(ListView)findViewById(R.id.mylist_meetings);
+        meetingListview.setAdapter(adapt);
+        super.onResume();
+
     }
 }
