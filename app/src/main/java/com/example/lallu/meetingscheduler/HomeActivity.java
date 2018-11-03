@@ -1,9 +1,7 @@
 package com.example.lallu.meetingscheduler;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 FloatingActionButton fa;
 ListView meetingListview;
-int selectedRecordPosition=-1;
     public final static String EXTRA_MESSAGE = "MESSAGE";
     DBHelper mydbhelper;
     ArrayAdapter adapt;
@@ -68,16 +65,7 @@ int selectedRecordPosition=-1;
         });
 
 
-        meetingListview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i> 0) {
-                    selectedRecordPosition = i - 1;
-                    showDialog();
-                }
-                return true;
-            }
-        });
+
 
 
     }
@@ -92,53 +80,4 @@ int selectedRecordPosition=-1;
         super.onResume();
 
     }
-
-    private void showDialog()
-    {
-        // Before deletion of the long pressed record, need to confirm with the user. So, build the AlartBox first
-        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-
-        // Set the appropriate message into it.
-        alertDialogBuilder.setMessage("Are you Really want to delete the selected record ?");
-
-        // Add a positive button and it's action. In our case action would be deletion of the data
-        alertDialogBuilder.setPositiveButton("Delete",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        try {
-                            mydbhelper.deleteContact(selectedRecordPosition);
-                            meetingListview.invalidateViews();
-
-//                           // mydbhelper.delete(blockList.get(selectedRecordPosition));
-//                                mydbhelper.deleteContact(meetingListview.get());
-//                            // Removing the same from the List to remove from display as well
-//                            blockList.remove(selectedRecordPosition);
-//                            listview.invalidateViews();
-
-                            // Reset the value of selectedRecordPosition
-                            selectedRecordPosition = -1;
-                           // populateNoRecordMsg();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-        // Add a negative button and it's action. In our case, just hide the dialog box
-        alertDialogBuilder.setNegativeButton("Cancel",
-                new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-
-        // Now, create the Dialog and show it.
-        final AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
-
-
-
 }

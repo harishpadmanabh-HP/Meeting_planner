@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "create table SchedledMeetings " +
-                        "(Meeting_Id integer primary key AUTOINCREMENT,Meeting_Date text, Meeting_title text" +
+                        "(Meeting_Id integer primary key ,Meeting_Date text, Meeting_title text" +
                         ",Meeting_Agenda text,Meeting_Scheduled text, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
         );
         Log.e(TAG,"Table Created");
@@ -85,19 +85,6 @@ public class DBHelper extends SQLiteOpenHelper {
         int numRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         return numRows;
     }
-
-
-//    public boolean updatemeeting (Integer id, String meetingtitle, String meetingdetails, String date, String time,String location) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("meetingtitle", meetingtitle);
-//        contentValues.put("meetingdetails", meetingdetails);
-//        contentValues.put("date", date);
-//        contentValues.put("time", time);
-//        contentValues.put("location", location);
-//        db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-//        return true;
-//    }
 
 
 

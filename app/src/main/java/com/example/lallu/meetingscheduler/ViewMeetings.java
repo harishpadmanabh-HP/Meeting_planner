@@ -37,6 +37,8 @@ public class ViewMeetings extends AppCompatActivity {
                 Cursor rs = dbselct.getData(Value);
                 id_To_Update = Value;
                 rs.moveToFirst();
+                int id=rs.getColumnIndex(DBHelper.KEY_ID);
+                Log.e("KEy",""+id);
                 String meeting_tittle = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
                 String meeting_Date=rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
                 String meeting_Agennda=rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
