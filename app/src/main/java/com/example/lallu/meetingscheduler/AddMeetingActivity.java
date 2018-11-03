@@ -384,7 +384,7 @@ dbconnect=new DBHelper(this);
 
 
 
-        if (dbconnect.insertMeetings(current_Date,strtitle,"dddd", stragenda, strdate, strendtime, strendtime, strphn)) {
+        if (dbconnect.insertMeetings(current_Date,strtitle, stragenda, strdate, strendtime, strendtime, strphn,"dddd")) {
 
                    Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {

@@ -26,167 +26,306 @@
         android:layout_below="@+id/appbar">
 
         <RelativeLayout
-            android:padding="9dp"
+            android:padding="10dp"
             android:layout_below="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/Titlelay">
-                <!--<TextView-->
-                <!--android:id="@+id/agendatextview"-->
-                <!--android:layout_width="wrap_content"-->
+            android:layout_height="match_parent"
+            >
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
                 <!--android:layout_height="wrap_content"-->
-                <!--android:text="Agenda" />-->
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:hint="Title"
-                    android:padding="9dp"
-                    android:id="@+id/title_edt"
-                    android:background="@drawable/textviewtheme1"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/agendalay"
-                android:layout_below="@+id/Titlelay">
-                <!--<TextView-->
-                <!--android:id="@+id/agendatextview"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Agenda" />-->
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="135dp"
-                    android:hint="Agenda"
-                    android:lines="5"
-                    android:padding="9dp"
-                    android:scrollbars="vertical"
-                    android:id="@+id/agenda_edt"
-
-
-                    android:background="@drawable/textviewtheme1"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/datelay"
-                android:orientation="horizontal"
-                android:layout_below="@+id/agendalay">
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Date"/>-->
-                <EditText
-
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:id="@+id/meeting_date_edittext"
-                    android:editable="false"
-                    android:clickable="true"
-                    android:background="@drawable/textviewtheme1"
-                    android:hint="Date"
-                    android:padding="9dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/start_time_lay"
-                android:orientation="horizontal"
-                android:layout_below="@+id/datelay"
-                android:weightSum="3">
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="45dp"-->
-                <!--android:text="From"/>-->
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:id="@+id/start_time_edt"
-                    android:editable="false"
-                    android:clickable="true"
-                    android:background="@drawable/textviewtheme1"
-                    android:hint="Starts At"
-                    android:layout_weight="1"
-                    android:padding="9dp"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:text="To"
-                    android:layout_weight="1"
-                    android:textAlignment="center"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:id="@+id/End_time_edt"
-                    android:editable="false"
-                    android:clickable="true"
-                    android:background="@drawable/textviewtheme1"
-                    android:hint="Ends At"
-                    android:layout_weight="1"
-                    android:padding="9dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/contactlay"
-                android:orientation="vertical"
-                android:layout_below="@+id/start_time_lay"
-                android:layout_marginTop="15dp">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:id="@+id/phone_number_edt"
-                    android:hint="Phone "
-                    android:background="@drawable/textviewtheme1"
-                    android:padding="9dp"
-                    android:inputType="numberSigned"
-                    android:clickable="true"
-
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/locationlay"
-                android:orientation="vertical"
-                android:layout_below="@+id/contactlay"
-                android:layout_marginTop="15dp">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:id="@+id/location_edt"
-                    android:hint="Location "
-                    android:background="@drawable/textviewtheme1"
-                    android:padding="9dp"
-                    android:clickable="true"
-                    />
-
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/locationlay">
-                <!--<Button-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/Titlelay">-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/agendatextview"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Agenda" />&ndash;&gt;-->
+                <!--<EditText-->
                     <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="Save"-->
-                    <!--android:onClick="SaveData"/>-->
-            </LinearLayout>
+                    <!--android:layout_height="45dp"-->
+                    <!--android:hint="Title"-->
+                    <!--android:padding="9dp"-->
+                    <!--android:id="@+id/title_edt"-->
+                    <!--android:background="@drawable/textviewtheme1"/>-->
+            <!--</LinearLayout>-->
+
+
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:id="@+id/agendalay"-->
+                <!--android:layout_below="@+id/Titlelay">-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:id="@+id/agendatextview"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Agenda" />&ndash;&gt;-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="135dp"-->
+                    <!--android:hint="Agenda"-->
+                    <!--android:lines="5"-->
+                    <!--android:padding="9dp"-->
+                    <!--android:scrollbars="vertical"-->
+                    <!--android:id="@+id/agenda_edt"-->
+
+
+                    <!--android:background="@drawable/textviewtheme1"/>-->
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/datelay"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_below="@+id/agendalay">-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="Date"/>&ndash;&gt;-->
+                <!--<EditText-->
+
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:id="@+id/meeting_date_edittext"-->
+                    <!--android:editable="false"-->
+                    <!--android:clickable="true"-->
+                    <!--android:background="@drawable/textviewtheme1"-->
+                    <!--android:hint="Date"-->
+                    <!--android:padding="9dp"-->
+                    <!--/>-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/start_time_lay"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_below="@+id/datelay"-->
+                <!--android:weightSum="3">-->
+                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:layout_height="45dp"&ndash;&gt;-->
+                <!--&lt;!&ndash;android:text="From"/>&ndash;&gt;-->
+                <!--<EditText-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:id="@+id/start_time_edt"-->
+                    <!--android:editable="false"-->
+                    <!--android:clickable="true"-->
+                    <!--android:background="@drawable/textviewtheme1"-->
+                    <!--android:hint="Starts At"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:padding="9dp"-->
+                    <!--/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:text="To"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:textAlignment="center"/>-->
+                <!--<EditText-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:id="@+id/End_time_edt"-->
+                    <!--android:editable="false"-->
+                    <!--android:clickable="true"-->
+                    <!--android:background="@drawable/textviewtheme1"-->
+                    <!--android:hint="Ends At"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:padding="9dp"/>-->
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/contactlay"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_below="@+id/start_time_lay"-->
+                <!--android:layout_marginTop="15dp">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:id="@+id/phone_number_edt"-->
+                    <!--android:hint="Phone "-->
+                    <!--android:background="@drawable/textviewtheme1"-->
+                    <!--android:padding="9dp"-->
+                    <!--android:inputType="numberSigned"-->
+                    <!--android:clickable="true"-->
+
+                    <!--/>-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/locationlay"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_below="@+id/contactlay"-->
+                <!--android:layout_marginTop="15dp">-->
+                <!--<EditText-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="45dp"-->
+                    <!--android:id="@+id/location_edt"-->
+                    <!--android:hint="Location "-->
+                    <!--android:background="@drawable/textviewtheme1"-->
+                    <!--android:padding="9dp"-->
+                    <!--android:clickable="true"-->
+                    <!--/>-->
+
+            <!--</LinearLayout>-->
+            <!--<LinearLayout-->
+                <!--android:layout_marginTop="15dp"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@+id/locationlay">-->
+                <!--&lt;!&ndash;<Button&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:text="Save"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:onClick="SaveData"/>&ndash;&gt;-->
+            <!--</LinearLayout>-->
+            <TableLayout
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:gravity="center">
+                    <TextView android:text=""
+                        android:id="@+id/table_title"
+                        android:textSize="25dp"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:textColor="#ec0a0a"
+                        android:gravity="center"/>
+
+                </TableRow >
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="DATE"
+                        android:textSize="18dp"
+                        android:layout_weight="1"
+                        />
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_date"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AGENDA"
+                        android:textSize="18dp"
+                        android:layout_weight="1"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_agenda"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meeting Date"
+                        android:textAllCaps="true"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_meetdate"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STARY AT"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_starttime"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="END AT"
+                        android:textSize="18dp"
+                        android:layout_weight="1"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_endtime"
+                        android:textSize="18dp"
+                        android:layout_weight="1"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PHONE NO:"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_phn"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+                <TableRow android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="LOCATION"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                    <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:id="@+id/table_location"
+                        android:layout_weight="1"
+                        android:textSize="18dp"/>
+                </TableRow>
+
+
+
+
+
+
+            </TableLayout>
         </RelativeLayout>
     </ScrollView>
 
