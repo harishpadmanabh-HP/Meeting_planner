@@ -77,7 +77,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
     public Cursor getData(int addeddate) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from SchedledMeetings where Meeting_Date="+addeddate+"", null );
+        Cursor res =  db.rawQuery( "select * from SchedledMeetings where Meeting_Id="+addeddate+"", null );
         return res;
     }
     public int numberOfRows(){
