@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -66,6 +67,97 @@ dbconnect=new DBHelper(this);
                 finish();
             }
         });
+
+//
+//        // To  display event
+//
+//
+//        Bundle extras = getIntent().getExtras();
+//        if(extras !=null) {
+//            int Value = extras.getInt("id");
+//
+//            if(Value>0){
+//                //means this is the view part not the add contact part.
+//                Cursor rs = dbconnect.getData(Value);
+//                int id_To_Update = Value;
+//                rs.moveToFirst();
+//
+//                String nam = rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
+//                String phon = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
+//                String emai = rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
+//                String stree = rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
+//                String plac = rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
+//                String str=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
+//                String str1=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+//
+//                if (!rs.isClosed())  {
+//                    rs.close();
+//                }
+////                Button b = (Button)findViewById(R.id.button1);
+////                b.setVisibility(View.INVISIBLE);
+//
+//                agenda.setText((CharSequence)nam);
+//                agenda.setFocusable(false);
+//                agenda.setClickable(false);
+//
+////                phone.setText((CharSequence)phon);
+////                phone.setFocusable(false);
+////                phone.setClickable(false);
+////
+////                email.setText((CharSequence)emai);
+////                email.setFocusable(false);
+////                email.setClickable(false);
+////
+////                street.setText((CharSequence)stree);
+////                street.setFocusable(false);
+////                street.setClickable(false);
+////
+////                place.setText((CharSequence)plac);
+////                place.setFocusable(false);
+////                place.setClickable(false);
+//            }
+//        }
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // To choose the meeting Date
