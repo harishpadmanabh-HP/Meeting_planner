@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class ViewMeetings extends AppCompatActivity {
     DBHelper dbselct;
   //  EditText edittitle;
-    int Value;
+   String Value;
     int id_To_Update = 0;
     TextView titletv,datetv,agendatv,meetingadatetv,starttv,endtv,phntv,loctv;
     @Override
@@ -30,12 +30,12 @@ public class ViewMeetings extends AppCompatActivity {
         dbselct = new DBHelper(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Value = extras.getInt("id");
+            Value = extras.getString("title");
             Log.e("Bundle",""+Value);
-            if(Value>0) {
+            if(Value!=null) {
                 //means this is the view part not the add contact part.
                 Cursor rs = dbselct.getData(Value);
-                id_To_Update = Value;
+               // id_To_Update = Value;
                 rs.moveToFirst();
                 int id=rs.getColumnIndex(DBHelper.KEY_ID);
                 Log.e("KEy",""+id);

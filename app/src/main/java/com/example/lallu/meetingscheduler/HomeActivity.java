@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class HomeActivity extends AppCompatActivity {
 FloatingActionButton fa;
 ListView meetingListview;
+String itemValue;
     public final static String EXTRA_MESSAGE = "MESSAGE";
     DBHelper mydbhelper;
     ArrayAdapter adapt;
@@ -40,11 +42,14 @@ ListView meetingListview;
         meetingListview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                 itemValue=(String)meetingListview.getItemAtPosition(arg2);
+              //  Log.e("Selected Item",itemValue);
                 // TODO Auto-generated method stub
-                int id_To_Search = arg2 + 1;
+              //  int id_To_Search = arg2 + 1;
 
                 Bundle dataBundle = new Bundle();
-                dataBundle.putInt("id", id_To_Search);
+             //   dataBundle.putInt("id", id_To_Search);
+                dataBundle.putString("title",itemValue);
 
                 Intent intent = new Intent(getApplicationContext(),ViewMeetings.class);
 
