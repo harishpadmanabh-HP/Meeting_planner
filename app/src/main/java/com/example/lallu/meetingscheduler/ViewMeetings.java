@@ -1,11 +1,15 @@
 package com.example.lallu.meetingscheduler;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewMeetings extends AppCompatActivity {
     DBHelper dbselct;
@@ -68,5 +72,19 @@ public class ViewMeetings extends AppCompatActivity {
                 }
             }
         }
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()){
+            case R.id.Edit_Contact:
+              //  startActivity(new Intent());
+                Toast.makeText(getApplicationContext(),"You Selected Edit option",Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 }
