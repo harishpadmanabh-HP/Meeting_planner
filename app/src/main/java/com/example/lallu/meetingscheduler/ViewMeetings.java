@@ -1,7 +1,9 @@
 package com.example.lallu.meetingscheduler;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +19,7 @@ public class ViewMeetings extends AppCompatActivity {
    String Value;
     int id_To_Update = 0;
     TextView titletv,datetv,agendatv,meetingadatetv,starttv,endtv,phntv,loctv;
+    String meeting_tittle,meeting_Date,meeting_Agennda,meeting_scheduledDate,meeting_start,meeting_ends,phone_ends, location;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,14 +46,14 @@ public class ViewMeetings extends AppCompatActivity {
                 rs.moveToFirst();
                 int id=rs.getColumnIndex(DBHelper.KEY_ID);
                 Log.e("KEy",""+id);
-                String meeting_tittle = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
-                String meeting_Date=rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
-                String meeting_Agennda=rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
-                String meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
-                String meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
-                String meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-                String phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-                String location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+                 meeting_tittle = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
+                 meeting_Date=rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
+                 meeting_Agennda=rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
+                meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
+                meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
+                meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
+                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
 
 
 
@@ -82,8 +85,47 @@ public class ViewMeetings extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()){
             case R.id.Edit_Contact:
-              //  startActivity(new Intent());
+                // goto update page
+
+//                Intent updateIntent=new Intent(getApplicationContext(),PostponActivity.class);
+//                updateIntent.putExtra("key_title",meeting_tittle);
+//                updateIntent.putExtra("key_agenda",meeting_Agennda);
+//                updateIntent.putExtra("key_date",meeting_Date);
+//                updateIntent.putExtra("key_scheduled",meeting_scheduledDate);
+//                updateIntent.putExtra("key_start",meeting_start);
+//                updateIntent.putExtra("key_phn",phone_ends);
+//                updateIntent.putExtra("key_loc",location);
+//                startActivity(updateIntent);
+
+
+
                 Toast.makeText(getApplicationContext(),"You Selected Edit option",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Delete_Contact:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setMessage("Are you want to delete")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dbselct.deleteContact(Value);
+                        Toast.makeText(getApplicationContext(), "Deleted Successfully",
+                                Toast.LENGTH_SHORT).show();
+                       finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog d = builder.create();
+                d.setTitle("Are you sure");
+                d.show();
+
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
     }

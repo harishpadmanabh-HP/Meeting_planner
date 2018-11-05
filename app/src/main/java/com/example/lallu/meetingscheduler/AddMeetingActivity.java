@@ -28,8 +28,7 @@ import java.util.Locale;
 import static android.content.ContentValues.TAG;
 
 public class AddMeetingActivity extends AppCompatActivity {
-    AppBarLayout appBarLayout;
-    Toolbar toolbar;
+
     EditText pickdate,starttime,endtime,phonenum,agenda,meetingtitle;
     String amPm,strlocation="aaaaaaaa";
     Calendar calender=Calendar.getInstance();
@@ -45,8 +44,8 @@ public class AddMeetingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_meeting);
-        appBarLayout=(AppBarLayout)findViewById(R.id.appbar);
-        toolbar=(Toolbar)findViewById(R.id.tollbar);
+//        appBarLayout=(AppBarLayout)findViewById(R.id.appbar);
+//        toolbar=(Toolbar)findViewById(R.id.tollbar);
         agenda=(EditText)findViewById(R.id.agenda_edt);
         pickdate=(EditText)findViewById(R.id.meeting_date_edittext);
         starttime=(EditText)findViewById(R.id.start_time_edt);
@@ -55,109 +54,6 @@ public class AddMeetingActivity extends AppCompatActivity {
         meetingtitle=(EditText)findViewById(R.id.title_edt);
 
 dbconnect=new DBHelper(this);
-        //Tool bar settings
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Add a new Meeting");
-       // getSupportActionBar().se
-        //getSupportActionBar().setSubtitle("aaa");
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-//
-//        // To  display event
-//
-//
-//        Bundle extras = getIntent().getExtras();
-//        if(extras !=null) {
-//            int Value = extras.getInt("id");
-//
-//            if(Value>0){
-//                //means this is the view part not the add contact part.
-//                Cursor rs = dbconnect.getData(Value);
-//                int id_To_Update = Value;
-//                rs.moveToFirst();
-//
-//                String nam = rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
-//                String phon = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
-//                String emai = rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
-//                String stree = rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
-//                String plac = rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
-//                String str=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-//                String str1=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-//
-//                if (!rs.isClosed())  {
-//                    rs.close();
-//                }
-////                Button b = (Button)findViewById(R.id.button1);
-////                b.setVisibility(View.INVISIBLE);
-//
-//                agenda.setText((CharSequence)nam);
-//                agenda.setFocusable(false);
-//                agenda.setClickable(false);
-//
-////                phone.setText((CharSequence)phon);
-////                phone.setFocusable(false);
-////                phone.setClickable(false);
-////
-////                email.setText((CharSequence)emai);
-////                email.setFocusable(false);
-////                email.setClickable(false);
-////
-////                street.setText((CharSequence)stree);
-////                street.setFocusable(false);
-////                street.setClickable(false);
-////
-////                place.setText((CharSequence)plac);
-////                place.setFocusable(false);
-////                place.setClickable(false);
-//            }
-//        }
-//
-//
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         // To choose the meeting Date

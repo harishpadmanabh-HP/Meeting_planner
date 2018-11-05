@@ -5,189 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ViewMeetings">
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/appbar"
-        android:fitsSystemWindows="true">
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:id="@+id/tollbar"
-            app:titleTextColor="#fff">
+    <!--<android.support.design.widget.AppBarLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/appbar"-->
+        <!--android:fitsSystemWindows="true">-->
+        <!--<android.support.v7.widget.Toolbar-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fitsSystemWindows="true"-->
+            <!--android:id="@+id/tollbar"-->
+            <!--app:titleTextColor="#fff">-->
 
-        </android.support.v7.widget.Toolbar>
+        <!--</android.support.v7.widget.Toolbar>-->
 
-    </android.support.design.widget.AppBarLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/appbar">
+    <!--</android.support.design.widget.AppBarLayout>-->
+    <!--<ScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--&gt;-->
 
-        <RelativeLayout
-            android:padding="10dp"
-            android:layout_below="@+id/appbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:id="@+id/Titlelay">-->
-                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/agendatextview"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:text="Agenda" />&ndash;&gt;-->
-                <!--<EditText-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:hint="Title"-->
-                    <!--android:padding="9dp"-->
-                    <!--android:id="@+id/title_edt"-->
-                    <!--android:background="@drawable/textviewtheme1"/>-->
-            <!--</LinearLayout>-->
-
-
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:id="@+id/agendalay"-->
-                <!--android:layout_below="@+id/Titlelay">-->
-                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:id="@+id/agendatextview"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:text="Agenda" />&ndash;&gt;-->
-                <!--<EditText-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="135dp"-->
-                    <!--android:hint="Agenda"-->
-                    <!--android:lines="5"-->
-                    <!--android:padding="9dp"-->
-                    <!--android:scrollbars="vertical"-->
-                    <!--android:id="@+id/agenda_edt"-->
-
-
-                    <!--android:background="@drawable/textviewtheme1"/>-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/datelay"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_below="@+id/agendalay">-->
-                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:text="Date"/>&ndash;&gt;-->
-                <!--<EditText-->
-
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:id="@+id/meeting_date_edittext"-->
-                    <!--android:editable="false"-->
-                    <!--android:clickable="true"-->
-                    <!--android:background="@drawable/textviewtheme1"-->
-                    <!--android:hint="Date"-->
-                    <!--android:padding="9dp"-->
-                    <!--/>-->
-            <!--</LinearLayout>-->
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/start_time_lay"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:layout_below="@+id/datelay"-->
-                <!--android:weightSum="3">-->
-                <!--&lt;!&ndash;<TextView&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:layout_height="45dp"&ndash;&gt;-->
-                <!--&lt;!&ndash;android:text="From"/>&ndash;&gt;-->
-                <!--<EditText-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:id="@+id/start_time_edt"-->
-                    <!--android:editable="false"-->
-                    <!--android:clickable="true"-->
-                    <!--android:background="@drawable/textviewtheme1"-->
-                    <!--android:hint="Starts At"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:padding="9dp"-->
-                    <!--/>-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:text="To"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:textAlignment="center"/>-->
-                <!--<EditText-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:id="@+id/End_time_edt"-->
-                    <!--android:editable="false"-->
-                    <!--android:clickable="true"-->
-                    <!--android:background="@drawable/textviewtheme1"-->
-                    <!--android:hint="Ends At"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:padding="9dp"/>-->
-            <!--</LinearLayout>-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/contactlay"-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_below="@+id/start_time_lay"-->
-                <!--android:layout_marginTop="15dp">-->
-                <!--<EditText-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:id="@+id/phone_number_edt"-->
-                    <!--android:hint="Phone "-->
-                    <!--android:background="@drawable/textviewtheme1"-->
-                    <!--android:padding="9dp"-->
-                    <!--android:inputType="numberSigned"-->
-                    <!--android:clickable="true"-->
-
-                    <!--/>-->
-
-            <!--</LinearLayout>-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/locationlay"-->
-                <!--android:orientation="vertical"-->
-                <!--android:layout_below="@+id/contactlay"-->
-                <!--android:layout_marginTop="15dp">-->
-                <!--<EditText-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="45dp"-->
-                    <!--android:id="@+id/location_edt"-->
-                    <!--android:hint="Location "-->
-                    <!--android:background="@drawable/textviewtheme1"-->
-                    <!--android:padding="9dp"-->
-                    <!--android:clickable="true"-->
-                    <!--/>-->
-
-            <!--</LinearLayout>-->
-            <!--<LinearLayout-->
-                <!--android:layout_marginTop="15dp"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_below="@+id/locationlay">-->
-                <!--&lt;!&ndash;<Button&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:text="Save"&ndash;&gt;-->
-                    <!--&lt;!&ndash;android:onClick="SaveData"/>&ndash;&gt;-->
-            <!--</LinearLayout>-->
+        <!--<RelativeLayout-->
+            <!--android:padding="10dp"-->
+           <!---->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--&gt;-->
+           <!---->
             <TableLayout
                 android:layout_centerInParent="true"
                 android:layout_width="match_parent"
@@ -195,7 +39,8 @@
                 android:gravity="center">
                 <TableRow
                     android:layout_width="match_parent"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:layout_height="wrap_content">
                     <TextView android:text=""
                         android:id="@+id/table_title"
                         android:textSize="25dp"
@@ -327,6 +172,6 @@
 
             </TableLayout>
         </RelativeLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
-</RelativeLayout>
+<!--</RelativeLayout>-->

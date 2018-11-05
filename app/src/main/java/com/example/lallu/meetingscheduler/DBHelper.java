@@ -90,11 +90,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public Integer deleteContact (Integer id) {
+    public Integer deleteContact (String id) {
         SQLiteDatabase db = this.getWritableDatabase();
+//        return db.delete("SchedledMeetings",
+//                "Meeting_Id= ? ",
+//                new String[] { Integer.toString(id) });
         return db.delete("SchedledMeetings",
-                "Meeting_Id= ? ",
-                new String[] { Integer.toString(id) });
+                "Meeting_title= ? ",
+                new String[] { id });
     }
 
 
