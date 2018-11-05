@@ -39,7 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "create table SchedledMeetings " +
-                        "(Meeting_Id integer primary key ,Meeting_Date text, Meeting_title text" +
+                        "(Meeting_Id integer primary key ,Meeting_Date text, Meeting_title text " +
                         ",Meeting_Agenda text,Meeting_Scheduled text, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
         );
         Log.e(TAG,"Table Created");
@@ -87,6 +87,27 @@ public class DBHelper extends SQLiteOpenHelper {
         int numRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
         return numRows;
     }
+
+    //update table
+    public boolean updatemeeting (String meetdate,String meetintitle,String meetagenda,String scheduleat,String starttime,String endtime,String phn,String location) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Meeting_Date",meetdate);
+        contentValues.put("Meeting_title",meetintitle);
+        contentValues.put("Meeting_Agenda",meetagenda);
+        contentValues.put("Meeting_Scheduled",scheduleat);
+        contentValues.put("Start_Time",starttime);
+        contentValues.put("End_Time",endtime);
+        contentValues.put("Contacts",phn);
+        contentValues.put("Meeting_Location",location);
+        db.update(TABLE_NAME, contentValues, "Meeting_title =? ", new String[] { meetintitle } );
+        return true;
+    }
+
+
+
+
+
 
 
 

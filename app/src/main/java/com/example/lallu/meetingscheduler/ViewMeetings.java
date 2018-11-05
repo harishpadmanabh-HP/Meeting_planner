@@ -76,6 +76,53 @@ public class ViewMeetings extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onResume() {
+        dbselct = new DBHelper(this);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            Value = extras.getString("title");
+            Log.e("Bundle",""+Value);
+            if(Value!=null) {
+                //means this is the view part not the add contact part.
+                Cursor rs = dbselct.getData(Value);
+                // id_To_Update = Value;
+                rs.moveToFirst();
+                int id=rs.getColumnIndex(DBHelper.KEY_ID);
+                Log.e("KEy",""+id);
+                meeting_tittle = rs.getString(rs.getColumnIndex(DBHelper.KEY_TITLE));
+                meeting_Date=rs.getString(rs.getColumnIndex(DBHelper.KEY_DATE));
+                meeting_Agennda=rs.getString(rs.getColumnIndex(DBHelper.KEY_AGENDA));
+                meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
+                meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
+                meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
+                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+
+
+
+                /// Set to th e data
+                titletv.setText(meeting_tittle);
+                datetv.setText(meeting_Date);
+                agendatv.setText(meeting_Agennda);
+                meetingadatetv.setText(meeting_scheduledDate);
+                starttv.setText(meeting_start);
+                endtv.setText(meeting_ends);
+                phntv.setText(phone_ends);
+                loctv.setText(location);
+
+
+
+                Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
+                if (!rs.isClosed())  {
+                    rs.close();
+                }
+            }
+        }
+        super.onResume();
+    }
+
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.main,menu);
         return true;
@@ -87,17 +134,18 @@ public class ViewMeetings extends AppCompatActivity {
             case R.id.Edit_Contact:
                 // goto update page
 
-//                Intent updateIntent=new Intent(getApplicationContext(),PostponActivity.class);
-//                updateIntent.putExtra("key_title",meeting_tittle);
-//                updateIntent.putExtra("key_agenda",meeting_Agennda);
-//                updateIntent.putExtra("key_date",meeting_Date);
-//                updateIntent.putExtra("key_scheduled",meeting_scheduledDate);
-//                updateIntent.putExtra("key_start",meeting_start);
-//                updateIntent.putExtra("key_phn",phone_ends);
-//                updateIntent.putExtra("key_loc",location);
-//                startActivity(updateIntent);
+                Intent updateIntent=new Intent(getApplicationContext(),UpdateActivity.class);
+                updateIntent.putExtra("key_title",meeting_tittle);
+                updateIntent.putExtra("key_agenda",meeting_Agennda);
+                updateIntent.putExtra("key_date",meeting_Date);
+                updateIntent.putExtra("key_scheduled",meeting_scheduledDate);
+                updateIntent.putExtra("key_start",meeting_start);
+                updateIntent.putExtra("Key_end",meeting_ends);
+                updateIntent.putExtra("key_phn",phone_ends);
+                updateIntent.putExtra("key_loc",location);
+                startActivity(updateIntent);
 
-
+                //startActivity(new Intent(getApplicationContext(),UpdateActivity.class));
 
                 Toast.makeText(getApplicationContext(),"You Selected Edit option",Toast.LENGTH_SHORT).show();
                 break;

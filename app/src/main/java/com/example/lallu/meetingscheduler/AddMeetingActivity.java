@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -156,7 +157,7 @@ dbconnect=new DBHelper(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void upDateLabel() {
-        String myFormat = "dd/MM/yy";
+        String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf= null;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             sdf = new SimpleDateFormat(myFormat,Locale.US);
@@ -275,6 +276,12 @@ dbconnect=new DBHelper(this);
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String current_Date = df.format(c);
         Toast.makeText(getApplicationContext(),current_Date,Toast.LENGTH_SHORT).show();
+
+        // check title
+//        ArrayList arrayList=dbconnect.getAllCotacts();
+//        for (int i=1;i<=arrayList.size();i++){
+//           // Log.e("ArrayList", (String) arrayList.get(i));
+//        }
 
 
 
