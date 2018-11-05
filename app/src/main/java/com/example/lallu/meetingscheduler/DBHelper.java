@@ -39,10 +39,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+//        db.execSQL(
+//                "create table SchedledMeetings " +
+//                        "(Meeting_Id integer primary key,Meeting_Date text, Meeting_title text " +
+//                        ",Meeting_Agenda text,Meeting_Scheduled text, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
+//        );
         db.execSQL(
                 "create table SchedledMeetings " +
-                        "(Meeting_Id integer primary key,Meeting_Date text, Meeting_title text " +
-                        ",Meeting_Agenda text,Meeting_Scheduled text, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
+                        "(Meeting_Id integer primary key,Meeting_Date date, Meeting_title text " +
+                        ",Meeting_Agenda text,Meeting_Scheduled date, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
         );
         Log.e(TAG,"Table Created");
 
@@ -126,6 +131,16 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+
+    public Cursor getDataweek(String addeddate) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //   Cursor res =  db.rawQuery( "select * from SchedledMeetings where Meeting_Id="+addeddate+"", null );
+        Cursor res =  db.rawQuery( "select Meeting_title from SchedledMeetings where Meeting_Scheduled='"+addeddate+"'", null );
+        Log.e("data",res.toString());
+        return res;
+    }
+
+
     public ArrayList<String> getAllCotacts() {
         ArrayList<String> array_list = new ArrayList<String>();
 
@@ -140,6 +155,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
+
 
 
 

@@ -85,4 +85,8 @@ String itemValue;
         super.onResume();
 
     }
+
+    public void asd(View view) {
+        startActivity(new Intent(getApplicationContext(),MeetingInWeek.class));
+    }
 }

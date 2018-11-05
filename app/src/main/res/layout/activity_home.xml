@@ -25,4 +25,10 @@
         tools:layout_editor_absoluteX="327dp"
         tools:layout_editor_absoluteY="454dp"
         android:focusable="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ok"
+        android:layout_below="@+id/mylist_meetings"
+        android:onClick="asd"/>
 </RelativeLayout>
