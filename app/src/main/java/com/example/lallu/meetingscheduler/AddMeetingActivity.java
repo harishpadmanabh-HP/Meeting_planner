@@ -277,11 +277,6 @@ dbconnect=new DBHelper(this);
         String current_Date = df.format(c);
         Toast.makeText(getApplicationContext(),current_Date,Toast.LENGTH_SHORT).show();
 
-        // check title
-//        ArrayList arrayList=dbconnect.getAllCotacts();
-//        for (int i=1;i<=arrayList.size();i++){
-//           // Log.e("ArrayList", (String) arrayList.get(i));
-//        }
 
 
 

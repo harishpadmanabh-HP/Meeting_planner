@@ -25,7 +25,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String KEY_TIME_ENDS="End_Time";
     public static final String KEY_CONTACTS="Contacts";
     public static final String KEY_LOCATION="Meeting_Location";
+    public static final String KEY_MEETING="Meeting_head";
     private HashMap MeetingData;
+
 
 
 
@@ -39,7 +41,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
                 "create table SchedledMeetings " +
-                        "(Meeting_Id integer primary key ,Meeting_Date text, Meeting_title text " +
+                        "(Meeting_Id integer primary key,Meeting_Date text, Meeting_title text " +
                         ",Meeting_Agenda text,Meeting_Scheduled text, Start_Time text,End_Time text,Contacts text,Meeting_Location text)"
         );
         Log.e(TAG,"Table Created");
@@ -60,6 +62,8 @@ public class DBHelper extends SQLiteOpenHelper {
     public boolean insertMeetings(String meetdate,String meetintitle,String meetagenda,String scheduleat,String starttime,String endtime,String phn,String location){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
+
+       // contentValues.put("Meeting_head","AAAAA");
 
         contentValues.put("Meeting_Date",meetdate);
         contentValues.put("Meeting_title",meetintitle);
