@@ -26,7 +26,8 @@ String itemValue;
         setContentView(R.layout.activity_home);
 
         mydbhelper=new DBHelper(this);
-        ArrayList arrayList=mydbhelper.getAllCotacts();
+       ArrayList arrayList=mydbhelper.getAllCotacts();
+
          adapt=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
 
 
@@ -79,6 +80,7 @@ String itemValue;
     protected void onResume() {
 
         ArrayList arrayList=mydbhelper.getAllCotacts();
+
         adapt=new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayList);
         meetingListview=(ListView)findViewById(R.id.mylist_meetings);
         meetingListview.setAdapter(adapt);

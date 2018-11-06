@@ -40,6 +40,7 @@ public class AddMeetingActivity extends AppCompatActivity {
 
     //DataBaseMeeting dbconnect;
     DBHelper dbconnect;
+    Button bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

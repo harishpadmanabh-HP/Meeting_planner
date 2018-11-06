@@ -132,13 +132,6 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-    public Cursor getDataweek(String addeddate) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        //   Cursor res =  db.rawQuery( "select * from SchedledMeetings where Meeting_Id="+addeddate+"", null );
-        Cursor res =  db.rawQuery( "select Meeting_title from SchedledMeetings where Meeting_Scheduled='"+addeddate+"'", null );
-        Log.e("data",res.toString());
-        return res;
-    }
 
 
     public ArrayList<String> getAllCotacts() {
@@ -155,7 +148,28 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return array_list;
     }
+//select by date
+public ArrayList<String> getAllMeetings() {
+    ArrayList<String> array_list = new ArrayList<String>();
 
+    //hp = new HashMap();
+    SQLiteDatabase db = this.getReadableDatabase();
+    //Cursor res =  db.rawQuery( "select * from SchedledMeetings", null );
+    try {
+        Cursor res = db.rawQuery("SELECT Meeting_title FROM SchedledMeetings WHERE Meeting_Scheduled('%Y/%m/%d', date) BETWEEN \"11/11/2018\" AND \"13/11/2018\"", null);
+        res.moveToFirst();
+
+        while (res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(KEY_TITLE)));
+            res.moveToNext();
+        }
+
+    }
+    catch (Exception e){
+        Log.e("Result","no data");
+    }
+    return array_list;
+}
 
 
 
