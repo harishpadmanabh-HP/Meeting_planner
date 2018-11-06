@@ -169,28 +169,10 @@ public ArrayList<String> getAllMeetings() {
     SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
     String current_Date = df.format(c);
     Log.e("Current_Date=",current_Date);
-//    String dd=current_Date.substring(0,2);
-//    String mm=current_Date.substring(3,5);
-//    String yy=current_Date.substring(6,current_Date.length());
-//    Log.e("Day",dd);
-//    Log.e("Month",mm);
-//    Log.e("Year",yy);
-//    int day = 0,month = 0,year = 0;
-//    try{
-//        day=Integer.parseInt(dd.trim());
-//        month=Integer.parseInt(mm.trim());
-//        year=Integer.parseInt(yy.trim());
-//        Log.e("Converted into integer",""+day+month+year);
-//
-//    }
-//    catch (Exception e){
-//        e.printStackTrace();
-//    }
-//    // To add 7 to find date of next week
-//    int nextday,nextmonth;
-//    nextday=day+7;
-//    Log.e("week",""+nextday);
-    String dt = current_Date;  // Current monday date
+
+    // next week date
+    
+    String dt = current_Date;
     int x = 7;
     Calendar cal = GregorianCalendar.getInstance();
     cal.add( Calendar.DAY_OF_YEAR, x);
