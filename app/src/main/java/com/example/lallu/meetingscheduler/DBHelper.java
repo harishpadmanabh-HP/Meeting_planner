@@ -2,14 +2,22 @@ package com.example.lallu.meetingscheduler;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
 
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -149,14 +157,57 @@ public class DBHelper extends SQLiteOpenHelper {
         return array_list;
     }
 //select by date
+@RequiresApi(api = Build.VERSION_CODES.N)
 public ArrayList<String> getAllMeetings() {
     ArrayList<String> array_list = new ArrayList<String>();
 
     //hp = new HashMap();
     SQLiteDatabase db = this.getReadableDatabase();
     //Cursor res =  db.rawQuery( "select * from SchedledMeetings", null );
+    // choose current date
+    Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String current_Date = df.format(c);
+    Log.e("Current_Date=",current_Date);
+//    String dd=current_Date.substring(0,2);
+//    String mm=current_Date.substring(3,5);
+//    String yy=current_Date.substring(6,current_Date.length());
+//    Log.e("Day",dd);
+//    Log.e("Month",mm);
+//    Log.e("Year",yy);
+//    int day = 0,month = 0,year = 0;
+//    try{
+//        day=Integer.parseInt(dd.trim());
+//        month=Integer.parseInt(mm.trim());
+//        year=Integer.parseInt(yy.trim());
+//        Log.e("Converted into integer",""+day+month+year);
+//
+//    }
+//    catch (Exception e){
+//        e.printStackTrace();
+//    }
+//    // To add 7 to find date of next week
+//    int nextday,nextmonth;
+//    nextday=day+7;
+//    Log.e("week",""+nextday);
+    String dt = current_Date;  // Current monday date
+    int x = 7;
+    Calendar cal = GregorianCalendar.getInstance();
+    cal.add( Calendar.DAY_OF_YEAR, x);
+    Date sevenDaysAfter = cal.getTime();
+    String nextweek=df.format(sevenDaysAfter);
+    Log.e("next",nextweek);
+
+
+
+
+
+
+
+
+
     try {
-        Cursor res = db.rawQuery("SELECT Meeting_title FROM SchedledMeetings WHERE Meeting_Scheduled('%Y/%m/%d', date) BETWEEN \"11/11/2018\" AND \"13/11/2018\"", null);
+        Cursor res = db.rawQuery("SELECT * FROM SchedledMeetings WHERE Meeting_Scheduled BETWEEN '"+current_Date+"' AND '"+nextweek+"';", null);
         res.moveToFirst();
 
         while (res.isAfterLast() == false) {
