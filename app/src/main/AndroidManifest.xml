@@ -22,7 +22,8 @@
         <activity android:name=".AddMeetingActivity" />
         <activity android:name=".ViewMeetings" />
         <activity android:name=".UpdateActivity" />
-        <activity android:name=".MeetingInWeek"></activity>
+        <activity android:name=".MeetingInWeek" />
+        <activity android:name=".AllMeetings"></activity>
     </application>
 
 </manifest>

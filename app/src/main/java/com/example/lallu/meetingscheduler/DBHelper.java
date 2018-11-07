@@ -138,7 +138,21 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { id });
     }
 
+// get All Dates
+public ArrayList<String> getAllDates() {
+    ArrayList<String> array_list = new ArrayList<String>();
 
+    //hp = new HashMap();
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor res =  db.rawQuery( "select * from SchedledMeetings", null );
+    res.moveToFirst();
+
+    while(res.isAfterLast() == false){
+        array_list.add(res.getString(res.getColumnIndex(KEY_SCHEDULED_AT)));
+        res.moveToNext();
+    }
+    return array_list;
+}
 
 
 
