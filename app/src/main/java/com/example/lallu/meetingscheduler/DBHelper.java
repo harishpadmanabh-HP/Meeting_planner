@@ -171,7 +171,7 @@ public ArrayList<String> getAllMeetings() {
     Log.e("Current_Date=",current_Date);
 
     // next week date
-    
+
     String dt = current_Date;
     int x = 7;
     Calendar cal = GregorianCalendar.getInstance();
