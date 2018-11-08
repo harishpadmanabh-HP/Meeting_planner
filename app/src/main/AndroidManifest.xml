@@ -23,7 +23,8 @@
         <activity android:name=".ViewMeetings" />
         <activity android:name=".UpdateActivity" />
         <activity android:name=".MeetingInWeek" />
-        <activity android:name=".AllMeetings"></activity>
+        <activity android:name=".AllMeetings" />
+        <activity android:name=".TomarrowActivity"></activity>
     </application>
 
 </manifest>
