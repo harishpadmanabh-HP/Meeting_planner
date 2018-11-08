@@ -97,8 +97,8 @@ public class ViewMeetings extends AppCompatActivity {
                 meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
                 meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
                 meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-//                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-//                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
 
 
 
