@@ -1,6 +1,8 @@
 package com.example.lallu.meetingscheduler;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,11 +21,36 @@ public class AllMeetings extends AppCompatActivity {
     ArrayList<String> meetingdate;
     ListView list;
     DBHelper mydbhelper;
+    FloatingActionButton addmeetingfab;
+    com.getbase.floatingactionbutton.FloatingActionButton weekfab,tomorrowfab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_meetings);
         mydbhelper=new DBHelper(this);
+
+        addmeetingfab=findViewById(R.id.fab_add_meeting);
+        addmeetingfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllMeetings.this,AddMeetingActivity.class));
+            }
+        });
+
+        weekfab=findViewById(R.id.fab_week);
+        weekfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllMeetings.this,MeetingInWeek.class));
+            }
+        });
+        tomorrowfab=findViewById(R.id.fab_tomorrow);
+        tomorrowfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AllMeetings.this,TomarrowActivity.class));
+            }
+        });
         meetinghead=mydbhelper.getAllCotacts();
         meetingdate=mydbhelper.getAllDates();
 //        meetinghead.add("aaaaaa");
@@ -68,7 +95,7 @@ public class AllMeetings extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             inflater=(LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view=inflater.inflate(R.layout.conect,null);
+            view=inflater.inflate(R.layout.viewmeetcustomlistviewdesign,null);
             ViewHolder holder=new ViewHolder();
             holder.Hna=(TextView)view.findViewById(R.id.txtview1);
             holder.Hna.setText(meetinghead.get(i));

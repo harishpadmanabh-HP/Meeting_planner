@@ -91,6 +91,7 @@ public class DataBaseMeeting  extends SQLiteOpenHelper {
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndex(MEETINGS_COLUMN_NAME)));
             res.moveToNext();
+            //testfor comm
         }
         return array_list;
     }

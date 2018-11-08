@@ -42,21 +42,6 @@ public class AddMeetingActivity extends AppCompatActivity {
     DBHelper dbconnect;
     Button bt;
 
-    //To check field is empty or not
-    private boolean validate(EditText[] fields){
-        for(int i = 0; i < fields.length; i++){
-            EditText currentField = fields[i];
-            if(currentField.getText().toString().length() <= 0){
-                //
-                //currentField.setError("invalid");
-                Toast.makeText(getApplicationContext(),"Not allowed an empty field",Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        return true;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,10 +217,12 @@ dbconnect=new DBHelper(this);
             contactNumber = cursorPhone.getString(cursorPhone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             Contactnum=contactNumber.replaceAll("\\s+","");
             if(Contactnum.length()==10){
-
+//                countryedt.setText("91");
+//                phnedt.setText(numBlock);
+//
 }
             else if(Contactnum.length()>10){
-
+               // countryedt.setText("");
                 phonenum.setText(Contactnum);}
             else{
                 Toast.makeText(getApplicationContext(),"No Number Found",Toast.LENGTH_LONG).show();
@@ -256,9 +243,15 @@ dbconnect=new DBHelper(this);
 
         if (cursor.moveToFirst()) {
 
+            // DISPLAY_NAME = The display name for the contact.
+            // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
 
             contactName1 = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))+":";
-
+//            if(enterNum.getText().length()>2){
+//                blockList_contactName.add(contactName);}
+//            else{
+//                Toast.makeText(getApplicationContext(),"No Number Found",Toast.LENGTH_LONG).show();
+//            }
         }
 
         cursor.close();
@@ -270,30 +263,34 @@ dbconnect=new DBHelper(this);
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void SaveData(View view) {
-        Boolean che=validate(new EditText[] {meetingtitle,agenda,pickdate,starttime,endtime,phonenum});
-        if (che==true) {
-            stragenda = agenda.getText().toString();
-            strdate = pickdate.getText().toString();
-            strstarttime = starttime.getText().toString();
-            strendtime = endtime.getText().toString();
-            strphn = phonenum.getText().toString();
-            strtitle = meetingtitle.getText().toString();
+        stragenda=agenda.getText().toString();
+        strdate=pickdate.getText().toString();
+        strstarttime=starttime.getText().toString();
+        strendtime=endtime.getText().toString();
+        strphn=phonenum.getText().toString();
+        strtitle=meetingtitle.getText().toString();
+        //Toast.makeText(this,stragenda+strdate+strstarttime+strendtime+strphn+strlocation,Toast.LENGTH_SHORT).show();
 
-            Date c = Calendar.getInstance().getTime();
-            System.out.println("Current time => " + c);
-            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-            String current_Date = df.format(c);
-            Toast.makeText(getApplicationContext(), current_Date, Toast.LENGTH_SHORT).show();
+      //  Current date
+//
+        Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String current_Date = df.format(c);
+        Toast.makeText(getApplicationContext(),current_Date,Toast.LENGTH_SHORT).show();
 
 
-            if (dbconnect.insertMeetings(current_Date, strtitle, stragenda, strdate, strstarttime, strendtime, strphn, "dddd")) {
 
-                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+
+
+        if (dbconnect.insertMeetings(current_Date,strtitle, stragenda, strdate, strendtime, strendtime, strphn,"dddd")) {
+
+                   Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
 
-        }
+
 
 
 
