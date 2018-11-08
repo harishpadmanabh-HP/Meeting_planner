@@ -80,10 +80,13 @@
                     android:layout_height="45dp"
                     android:background="@drawable/textviewtheme1"
                     android:clickable="true"
-                    android:editable="false"
+
+
                     android:hint="Date"
                     android:padding="9dp" />
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:id="@+id/start_time_lay"
@@ -92,46 +95,61 @@
                 android:layout_below="@+id/datelay"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
-                android:weightSum="3">
-                <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="45dp"-->
-                <!--android:text="From"/>-->
+                android:weightSum="2">
+
                 <EditText
-                    android:id="@+id/start_time_edt"
+                    android:id="@+id/start_time_edt1"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_weight="1"
                     android:background="@drawable/textviewtheme1"
-                    android:clickable="true"
-                    android:editable="false"
                     android:hint="Starts At"
-                    android:padding="9dp" />
+                    android:padding="9dp"
+                    android:editable="false"/>
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
-                    android:layout_height="45dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/start_time_lay"
                     android:layout_weight="1"
-                    android:text="To"
-                    android:textAlignment="center" />
+                    android:text="Change time"
+                    android:id="@+id/time_start"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/end_time_lay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/start_time_lay"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
 
                 <EditText
-                    android:id="@+id/End_time_edt"
+                    android:id="@+id/end_time_edt1"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
                     android:layout_weight="1"
                     android:background="@drawable/textviewtheme1"
-                    android:clickable="true"
                     android:editable="false"
                     android:hint="Ends At"
                     android:padding="9dp" />
-            </LinearLayout>
 
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/start_time_lay"
+                    android:layout_weight="1"
+                    android:text="Change time"
+                    android:id="@+id/time_end"/>
+
+            </LinearLayout>
             <LinearLayout
                 android:id="@+id/contactlay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/start_time_lay"
+                android:layout_below="@+id/end_time_lay"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">
 
@@ -181,6 +199,7 @@
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
+
 
 
 </RelativeLayout>

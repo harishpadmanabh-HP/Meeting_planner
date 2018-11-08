@@ -1,6 +1,7 @@
 package com.example.lallu.meetingscheduler;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -11,8 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -27,8 +30,13 @@ public class UpdateActivity extends AppCompatActivity {
     private String contactID,Contactnum,contactName1;
     private static final int REQUEST_CODE_PICK_CONTACTS = 1;
     EditText update_title,update_agenda,update_Schedate,update_start,update_end,update_location,update_phn;
-String bundletitle,bundleagenda,bundledate,bundleschedate,bundlestarttime,bundleendtime,bundlelocation,bundlephn;
-DBHelper dbupdate;
+    String bundletitle,bundleagenda,bundledate,bundleschedate,bundlestarttime,bundleendtime,bundlelocation,bundlephn;
+    String amPm;
+    DBHelper dbupdate;
+    Button time_startbt,time_endbt;
+    private Calendar mcalendar;
+
+    private int day, month, year,mHour,mMinute;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,11 +44,19 @@ DBHelper dbupdate;
         update_title=(EditText)findViewById(R.id.title_edt);
         update_agenda=(EditText)findViewById(R.id.agenda_edt);
         update_Schedate=(EditText)findViewById(R.id.meeting_date_edittext);
-        update_start=(EditText)findViewById(R.id.start_time_edt);
-        update_end=(EditText)findViewById(R.id.End_time_edt);
+        update_start=(EditText)findViewById(R.id.start_time_edt1);
+        update_end=(EditText)findViewById(R.id.end_time_edt1);
         update_phn=(EditText)findViewById(R.id.phone_number_edt);
         update_location=(EditText)findViewById(R.id.location_edt);
+        time_startbt=(Button)findViewById(R.id.time_start);
+        time_endbt=(Button)findViewById(R.id.time_end);
         dbupdate=new DBHelper(this);
+
+        update_Schedate.setOnClickListener(mClickListener);
+        mcalendar=Calendar.getInstance();
+        day = mcalendar.get(Calendar.DAY_OF_MONTH);
+        year = mcalendar.get(Calendar.YEAR);
+        month = mcalendar.get(Calendar.MONTH);
 
         Bundle obj=getIntent().getExtras();
         bundletitle=obj.getString("key_title");
@@ -66,7 +82,53 @@ DBHelper dbupdate;
 //        update_location.setEnabled(false);
         update_phn.setText(bundlephn);
 //        update_phn.setEnabled(false);
+
+        // To choose start time
+        time_startbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(UpdateActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+//set time to edit text
+                                update_start.setText(hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+        });
+
+        time_endbt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(UpdateActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+//set time to edit text
+                                update_end.setText(hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+        });
     }
+
 
     public void UpdateData(View view) {
         bundletitle=update_title.getText().toString();
@@ -77,38 +139,11 @@ DBHelper dbupdate;
         bundlephn=update_phn.getText().toString();
         bundlelocation=update_location.getText().toString();
         Toast.makeText(getApplicationContext(),bundletitle,Toast.LENGTH_SHORT).show();
-       if (dbupdate.updatemeeting(bundledate, bundletitle,bundleagenda,bundleschedate, bundlestarttime, bundleendtime,bundlephn,bundlelocation)
-               ==true){
-           Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_SHORT).show();
-           finish();
-       }
-        // Add date picker
-        // To choose the meeting Date
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear,
-                                  int dayOfMonth) {
-                // TODO Auto-generated method stub
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, monthOfYear);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-
-        };
-
-        update_Schedate.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
-                new DatePickerDialog(UpdateActivity.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
+        if (dbupdate.updatemeeting(bundledate, bundletitle,bundleagenda,bundleschedate, bundlestarttime, bundleendtime,bundlephn,bundlelocation)
+                ==true){
+            Toast.makeText(getApplicationContext(),"Updated",Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
 
     }
@@ -191,15 +226,9 @@ DBHelper dbupdate;
 
         if (cursor.moveToFirst()) {
 
-            // DISPLAY_NAME = The display name for the contact.
-            // HAS_PHONE_NUMBER =   An indicator of whether this contact has at least one phone number.
 
             contactName1 = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))+":";
-//            if(enterNum.getText().length()>2){
-//                blockList_contactName.add(contactName);}
-//            else{
-//                Toast.makeText(getApplicationContext(),"No Number Found",Toast.LENGTH_LONG).show();
-//            }
+
         }
 
         cursor.close();
@@ -209,11 +238,23 @@ DBHelper dbupdate;
 
     }
 
-    private void updateLabel() {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        update_Schedate.setText(sdf.format(myCalendar.getTime()));
+    View.OnClickListener mClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            DateDialog();
+        }
+    };
+
+    public void DateDialog() {
+        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                update_Schedate.setText(dayOfMonth + "/" + monthOfYear + "/" + year);
+            }
+        };
+        DatePickerDialog dpDialog = new DatePickerDialog(UpdateActivity.this, listener, year, month, day);
+        dpDialog.show();
     }
 
 }
