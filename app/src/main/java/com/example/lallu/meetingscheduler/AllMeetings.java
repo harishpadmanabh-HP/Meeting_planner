@@ -1,8 +1,15 @@
 package com.example.lallu.meetingscheduler;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +25,8 @@ import java.util.ArrayList;
 
 public class AllMeetings extends AppCompatActivity {
     ArrayList<String> meetinghead;
+    private int storagepermissioncode=1;
+
     ArrayList<String> meetingdate;
     ListView list;
     DBHelper mydbhelper;
@@ -33,6 +42,16 @@ public class AllMeetings extends AppCompatActivity {
         addmeetingfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //.......
+                if(ContextCompat.checkSelfPermission(AllMeetings.this,
+                        Manifest.permission.READ_CONTACTS)== PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(AllMeetings.this, "ALREADY GRANTED PERMISSION", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    requeststroagepermission();
+                   // startActivity(new Intent(AllMeetings.this,AddMeetingActivity.class));
+
+                }//.......
                 startActivity(new Intent(AllMeetings.this,AddMeetingActivity.class));
             }
         });
@@ -73,6 +92,42 @@ public class AllMeetings extends AppCompatActivity {
             }
         });
 
+    }
+    private void requeststroagepermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
+            new AlertDialog.Builder(this)
+                    .setTitle("PERMISSION NEEDED")
+                    .setMessage("This is needed for Recording voice")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(AllMeetings.this, new String[] {Manifest.permission.RECORD_AUDIO},storagepermissioncode);
+
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+                    .create().show();
+        }
+        else{
+            ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.READ_CONTACTS},storagepermissioncode);
+
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==storagepermissioncode){
+            if(grantResults.length>0&&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "PERMISSION GRANTED", Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(this, "DENIED PERMISSION", Toast.LENGTH_SHORT).show();
+        }
     }
     class adapter extends BaseAdapter{
         LayoutInflater inflater;
