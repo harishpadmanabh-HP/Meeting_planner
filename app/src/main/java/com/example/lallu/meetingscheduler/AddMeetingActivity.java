@@ -30,13 +30,13 @@ import static android.content.ContentValues.TAG;
 
 public class AddMeetingActivity extends AppCompatActivity {
 
-    EditText pickdate,starttime,endtime,phonenum,agenda,meetingtitle;
+    EditText pickdate,starttime,endtime,phonenum,agenda,meetingtitle,locton;
     String amPm,strlocation="aaaaaaaa";
     Calendar calender=Calendar.getInstance();
     private static final int REQUEST_CODE_PICK_CONTACTS=1;
     private Uri uriContact;
     private String contactID,Contactnum,contactName1;
-    String stragenda,strdate,strstarttime,strendtime,strtitle,strphn;
+    String stragenda,strdate,strstarttime,strendtime,strtitle,strphn,strloc;
 
     //DataBaseMeeting dbconnect;
     DBHelper dbconnect;
@@ -54,6 +54,7 @@ public class AddMeetingActivity extends AppCompatActivity {
         endtime=(EditText)findViewById(R.id.End_time_edt);
         phonenum=(EditText)findViewById(R.id.phone_number_edt);
         meetingtitle=(EditText)findViewById(R.id.title_edt);
+        locton=(EditText)findViewById(R.id.location_edt);
 
 dbconnect=new DBHelper(this);
 
@@ -269,6 +270,7 @@ dbconnect=new DBHelper(this);
         strendtime=endtime.getText().toString();
         strphn=phonenum.getText().toString();
         strtitle=meetingtitle.getText().toString();
+        strloc=locton.getText().toString();
         //Toast.makeText(this,stragenda+strdate+strstarttime+strendtime+strphn+strlocation,Toast.LENGTH_SHORT).show();
 
       //  Current date
@@ -283,7 +285,7 @@ dbconnect=new DBHelper(this);
 
 
 
-        if (dbconnect.insertMeetings(current_Date,strtitle, stragenda, strdate, strendtime, strendtime, strphn,"dddd")) {
+        if (dbconnect.insertMeetings(current_Date,strtitle, stragenda, strdate, strendtime, strendtime, strphn,strloc)) {
 
                    Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
             } else {

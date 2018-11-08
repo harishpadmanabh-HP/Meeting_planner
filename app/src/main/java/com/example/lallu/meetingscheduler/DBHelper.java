@@ -219,7 +219,40 @@ public ArrayList<String> getAllMeetings() {
 }
 
 
+// Tommorrows meeting
+@RequiresApi(api = Build.VERSION_CODES.N)
+public ArrayList<String> getTommorrowsMeeting() {
+    ArrayList<String> array_list = new ArrayList<String>();
+    SQLiteDatabase db = this.getReadableDatabase();
+    //Current date
+    Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+    String current_Date = df.format(c);
+    Log.e("Current_Date=",current_Date);
+    //tommoroow
+    String dt = current_Date;
+    int x = 1;
+    Calendar cal = GregorianCalendar.getInstance();
+    cal.add( Calendar.DAY_OF_YEAR, x);
+    Date sevenDaysAfter = cal.getTime();
+    String nextday=df.format(sevenDaysAfter);
+    Log.e("next",nextday);
 
+    try {
+        Cursor res = db.rawQuery("SELECT * FROM SchedledMeetings WHERE Meeting_Scheduled= '"+nextday+"';", null);
+        res.moveToFirst();
+
+        while (res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(KEY_TITLE)));
+            res.moveToNext();
+        }
+
+    }
+    catch (Exception e){
+        Log.e("Result","no data");
+    }
+    return array_list;
+}
 
 
 

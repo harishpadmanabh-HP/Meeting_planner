@@ -23,7 +23,7 @@ public class ViewMeetings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_meetings);
+        setContentView(R.layout.viewmeetingdesign);
         //edittitle=(EditText)findViewById(R.id.title_edt);
 
         titletv=(TextView)findViewById(R.id.table_title);
@@ -32,8 +32,8 @@ public class ViewMeetings extends AppCompatActivity {
         meetingadatetv=(TextView)findViewById(R.id.table_meetdate);
         starttv=(TextView)findViewById(R.id.table_starttime);
         endtv=(TextView)findViewById(R.id.table_endtime);
-        phntv=(TextView)findViewById(R.id.table_phn);
-        loctv=(TextView)findViewById(R.id.table_location);
+//        phntv=(TextView)findViewById(R.id.table_phn);
+//        loctv=(TextView)findViewById(R.id.table_location);
         dbselct = new DBHelper(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -52,8 +52,8 @@ public class ViewMeetings extends AppCompatActivity {
                 meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
                 meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
                 meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+//                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+//                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
 
 
 
@@ -64,12 +64,12 @@ public class ViewMeetings extends AppCompatActivity {
                 meetingadatetv.setText(meeting_scheduledDate);
                 starttv.setText(meeting_start);
                 endtv.setText(meeting_ends);
-                phntv.setText(phone_ends);
-                loctv.setText(location);
+//                phntv.setText(phone_ends);
+//                loctv.setText(location);
 
 
 
-                Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
+              //  Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
                 if (!rs.isClosed())  {
                     rs.close();
                 }
@@ -97,8 +97,8 @@ public class ViewMeetings extends AppCompatActivity {
                 meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
                 meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
                 meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+//                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+//                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
 
 
 
@@ -109,12 +109,12 @@ public class ViewMeetings extends AppCompatActivity {
                 meetingadatetv.setText(meeting_scheduledDate);
                 starttv.setText(meeting_start);
                 endtv.setText(meeting_ends);
-                phntv.setText(phone_ends);
-                loctv.setText(location);
+//                phntv.setText(phone_ends);
+//                loctv.setText(location);
 
 
 
-                Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
+            //    Log.e("title",meeting_tittle+meeting_Date+meeting_Agennda+meeting_scheduledDate+meeting_start+meeting_ends+phone_ends+location);
                 if (!rs.isClosed())  {
                     rs.close();
                 }

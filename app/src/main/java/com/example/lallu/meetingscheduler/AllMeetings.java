@@ -26,6 +26,7 @@ import java.util.ArrayList;
 public class AllMeetings extends AppCompatActivity {
     ArrayList<String> meetinghead;
     private int storagepermissioncode=1;
+    adapter ad;
 
     ArrayList<String> meetingdate;
     ListView list;
@@ -72,14 +73,9 @@ public class AllMeetings extends AppCompatActivity {
         });
         meetinghead=mydbhelper.getAllCotacts();
         meetingdate=mydbhelper.getAllDates();
-//        meetinghead.add("aaaaaa");
-//        meetinghead.add("bbbbbb");
-//        meetinghead.add("ccccccc");
-//        meetingdate.add("12/04/2018");
-//        meetingdate.add("34/67/2018");
-//        meetingdate.add("78/09/1234");
+
         list=(ListView)findViewById(R.id.hosplist);
-        adapter ad=new adapter();
+         ad=new adapter();
         list.setAdapter(ad);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,11 +83,30 @@ public class AllMeetings extends AppCompatActivity {
                 String itm=((TextView)view.findViewById(R.id.txtview1)).getText().toString();
 
                 Toast.makeText(getApplicationContext(), itm,Toast.LENGTH_SHORT).show();
+                Bundle dataBundle = new Bundle();
+                //   dataBundle.putInt("id", id_To_Search);
+                dataBundle.putString("title",itm);
+
+                Intent intent = new Intent(getApplicationContext(),ViewMeetings.class);
+
+                intent.putExtras(dataBundle);
+                startActivity(intent);
                 // View v1 = adapterView.getChildAt(position);
 
             }
         });
 
+    }
+    protected void onResume() {
+        meetinghead=mydbhelper.getAllCotacts();
+        meetingdate=mydbhelper.getAllDates();
+        list=(ListView)findViewById(R.id.hosplist);
+        ad=new adapter();
+        list.setAdapter(ad);
+
+
+
+        super.onResume();
     }
     private void requeststroagepermission(){
         if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_CONTACTS)){
