@@ -5,7 +5,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -31,7 +33,7 @@ public class AllMeetings extends AppCompatActivity {
     ArrayList<String> meetingdate;
     ListView list;
     DBHelper mydbhelper;
-    FloatingActionButton addmeetingfab;
+    FloatingActionButton addmeetingfab,deleteallmeetings;
     com.getbase.floatingactionbutton.FloatingActionButton weekfab,tomorrowfab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,48 @@ public class AllMeetings extends AppCompatActivity {
                 startActivity(intent);
                 // View v1 = adapterView.getChildAt(position);
 
+            }
+        });
+        deleteallmeetings=findViewById(R.id.fab_delete_meeting);
+        deleteallmeetings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog.Builder builder;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    builder = new AlertDialog.Builder(AllMeetings.this, android.R.style.Theme_Material_Dialog_Alert);
+                } else {
+                    builder = new AlertDialog.Builder(AllMeetings.this);
+                }
+                builder.setTitle("Delete Meetings ?")
+                        .setMessage("Are you sure you want to delete all scheduled meetings?")
+                        .setPositiveButton("DELETE", new DialogInterface.OnClickListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.N)
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+                                mydbhelper.deleteAll();
+
+                                meetinghead=mydbhelper.getAllCotacts();
+                                meetingdate=mydbhelper.getAllDates();
+                                list=(ListView)findViewById(R.id.hosplist);
+                                ad=new adapter();
+                                list.setAdapter(ad);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                                dialog.dismiss();
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
+//                mydbhelper.deleteAll();
+//
+//                meetinghead=mydbhelper.getAllCotacts();
+//                meetingdate=mydbhelper.getAllDates();
+//                list=(ListView)findViewById(R.id.hosplist);
+//                ad=new adapter();
+//                list.setAdapter(ad);
             }
         });
 

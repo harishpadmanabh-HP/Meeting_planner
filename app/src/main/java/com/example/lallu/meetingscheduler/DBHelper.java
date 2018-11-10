@@ -1,19 +1,17 @@
 package com.example.lallu.meetingscheduler;
 
+import android.annotation.TargetApi;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -138,6 +136,27 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { id });
     }
 
+    //Delete all meeting for today
+
+    //Delete all meetings for
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void deleteAll()
+    {
+        //SQLiteDatabase db = this.getWritableDatabase();
+        // db.delete(TABLE_NAME,null,null);
+        SQLiteDatabase db = this.getWritableDatabase();
+
+       // db.execSQL("delete  from "+ TABLE_NAME);
+        //db.execSQL("TRUNCATE table" + TABLE_NAME);
+        Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String current_Date = df.format(c);
+        Log.e("Current_Date=",current_Date);
+      db.execSQL("DELETE  FROM SchedledMeetings  ");
+        db.close();
+    }
+
+
 // get All Dates
 public ArrayList<String> getAllDates() {
     ArrayList<String> array_list = new ArrayList<String>();
@@ -255,5 +274,21 @@ public ArrayList<String> getTommorrowsMeeting() {
 }
 
 
+    @TargetApi(Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public Integer deletealltodaysmeeting(String id) {
+        Date c = Calendar.getInstance().getTime(); System.out.println("Current time => " + c);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String current_Date = df.format(c);
+        Log.e("Current_Date=",current_Date);
+        SQLiteDatabase db = this.getWritableDatabase();
+//        return db.delete("SchedledMeetings",
+//                "Meeting_Id= ? ",
+//                new String[] { Integer.toString(id) });
+        return db.delete("SchedledMeetings",
+                "Meeting_Date= "+current_Date,
+                new String[] { id });
 
+
+    }
 }

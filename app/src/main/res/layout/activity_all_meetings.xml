@@ -21,7 +21,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="119dp"
+        android:layout_marginBottom="139dp"
         android:layout_marginEnd="25dp"
         android:gravity="right"
         app:fab_addButtonColorNormal="@color/colorAccent"
@@ -77,14 +77,14 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="54dp"
+        android:layout_marginBottom="74dp"
         android:layout_marginEnd="33dp"
         android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Meeting"
+            android:text="Create new Meeting"
             android:textColor="#50c84c" />
 
         <android.support.design.widget.FloatingActionButton
@@ -100,5 +100,35 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="4dp"
+        android:layout_marginEnd="33dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear all Meeting"
+            android:textColor="#e15351" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_delete_meeting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#f1e8e8"
+            android:clickable="true"
+
+            android:backgroundTint="#de2727"
+             app:fab_size="mini"
+            android:src="@drawable/ic_delete_forever_black_24dp" />
+
+
+    </LinearLayout>
 
 </RelativeLayout>

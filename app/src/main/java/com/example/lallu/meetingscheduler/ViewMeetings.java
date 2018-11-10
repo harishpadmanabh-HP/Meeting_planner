@@ -32,8 +32,8 @@ public class ViewMeetings extends AppCompatActivity {
         meetingadatetv=(TextView)findViewById(R.id.table_meetdate);
         starttv=(TextView)findViewById(R.id.table_starttime);
         endtv=(TextView)findViewById(R.id.table_endtime);
-//        phntv=(TextView)findViewById(R.id.table_phn);
-//        loctv=(TextView)findViewById(R.id.table_location);
+        phntv=(TextView)findViewById(R.id.table_phn);
+        loctv=(TextView)findViewById(R.id.table_location);
         dbselct = new DBHelper(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -52,8 +52,8 @@ public class ViewMeetings extends AppCompatActivity {
                 meeting_scheduledDate=rs.getString(rs.getColumnIndex(DBHelper.KEY_SCHEDULED_AT));
                 meeting_start=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_START));
                 meeting_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_TIME_ENDS));
-//                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
-//                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
+                phone_ends=rs.getString(rs.getColumnIndex(DBHelper.KEY_CONTACTS));
+                location=rs.getString(rs.getColumnIndex(DBHelper.KEY_LOCATION));
 
 
 
@@ -64,8 +64,8 @@ public class ViewMeetings extends AppCompatActivity {
                 meetingadatetv.setText(meeting_scheduledDate);
                 starttv.setText(meeting_start);
                 endtv.setText(meeting_ends);
-//                phntv.setText(phone_ends);
-//                loctv.setText(location);
+                phntv.setText(phone_ends);
+                loctv.setText(location);
 
 
 

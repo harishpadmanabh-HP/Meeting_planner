@@ -41,6 +41,17 @@ public class AddMeetingActivity extends AppCompatActivity {
     //DataBaseMeeting dbconnect;
     DBHelper dbconnect;
     Button bt;
+    private boolean validate(EditText[] fields){
+        for(int i = 0; i < fields.length; i++){
+            EditText currentField = fields[i];
+            if(currentField.getText().toString().length() <= 0){
+                //
+                Toast.makeText(AddMeetingActivity.this, "All fields must be fill", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -279,19 +290,21 @@ dbconnect=new DBHelper(this);
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String current_Date = df.format(c);
         Toast.makeText(getApplicationContext(),current_Date,Toast.LENGTH_SHORT).show();
+        Boolean check=validate(new EditText[]{meetingtitle,agenda,pickdate,starttime,endtime,phonenum,locton});
 
 
 
+if (check==true) {
 
 
+    if (dbconnect.insertMeetings(current_Date, strtitle, stragenda, strdate, strstarttime, strendtime, strphn, strloc)) {
 
-        if (dbconnect.insertMeetings(current_Date,strtitle, stragenda, strdate, strendtime, strendtime, strphn,strloc)) {
-
-                   Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-
+        Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+        finish();
+    } else {
+        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+    }
+}
 
 
 
